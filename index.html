@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your account in three quick steps: account details, profile information and personal preferences.">
+  <title>Create Your Account | 3-Step Signup Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <header class="card-header">
+      <h1>Create your account</h1>
+      <p>It takes about a minute. You can go back at any time without losing anything.</p>
+    </header>
+
+    <!-- Step indicator -->
+    <nav aria-label="Signup progress">
+      <ol class="stepper" id="stepper">
+        <li class="step-item is-current" aria-current="step">
+          <span class="step-dot" aria-hidden="true">1</span>
+          <span class="step-label">Account<span class="sr-only"> (current step)</span></span>
+        </li>
+        <li class="step-item">
+          <span class="step-dot" aria-hidden="true">2</span>
+          <span class="step-label">Profile<span class="sr-only"> (upcoming)</span></span>
+        </li>
+        <li class="step-item">
+          <span class="step-dot" aria-hidden="true">3</span>
+          <span class="step-label">Preferences<span class="sr-only"> (upcoming)</span></span>
+        </li>
+      </ol>
+    </nav>
+
+    <form id="signup-form" novalidate>
+
+      <!-- STEP 1: Account -->
+      <section class="step" aria-labelledby="step1-title">
+        <h2 id="step1-title" tabindex="-1">Step 1: Account</h2>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" autocomplete="email" required
+                 aria-describedby="email-error" placeholder="you@example.com">
+          <p class="error" id="email-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" autocomplete="new-password"
+                 required minlength="8" aria-describedby="password-hint password-error">
+          <p class="hint" id="password-hint">Use at least 8 characters.</p>
+          <p class="error" id="password-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="confirmPassword">Confirm password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password"
+                 required aria-describedby="confirmPassword-error">
+          <p class="error" id="confirmPassword-error" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- STEP 2: Profile -->
+      <section class="step" aria-labelledby="step2-title" hidden>
+        <h2 id="step2-title" tabindex="-1">Step 2: Profile</h2>
+
+        <div class="field">
+          <label for="fullName">Full name</label>
+          <input type="text" id="fullName" name="fullName" autocomplete="name" required
+                 aria-describedby="fullName-error">
+          <p class="error" id="fullName-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" required
+                 aria-describedby="phone-hint phone-error" placeholder="+92 300 1234567">
+          <p class="hint" id="phone-hint">Include your country code if you can.</p>
+          <p class="error" id="phone-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="dob">Date of birth</label>
+          <input type="date" id="dob" name="dob" autocomplete="bday" required
+                 aria-describedby="dob-error">
+          <p class="error" id="dob-error" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- STEP 3: Preferences -->
+      <section class="step" aria-labelledby="step3-title" hidden>
+        <h2 id="step3-title" tabindex="-1">Step 3: Preferences</h2>
+
+        <fieldset class="group" id="interests" data-group="interests"
+                  data-msg="Please choose at least one interest." aria-describedby="interests-error">
+          <legend>Interests <span class="muted">(choose at least one)</span></legend>
+          <label class="option"><input type="checkbox" name="interests" value="technology"> Technology</label>
+          <label class="option"><input type="checkbox" name="interests" value="design"> Design</label>
+          <label class="option"><input type="checkbox" name="interests" value="business"> Business</label>
+          <label class="option"><input type="checkbox" name="interests" value="education"> Education</label>
+          <p class="error" id="interests-error" aria-live="polite"></p>
+        </fieldset>
+
+        <fieldset class="group" id="contact" data-group="contact"
+                  data-msg="Please select how we should contact you." aria-describedby="contact-error">
+          <legend>Preferred contact method</legend>
+          <label class="option"><input type="radio" name="contact" value="email"> Email</label>
+          <label class="option"><input type="radio" name="contact" value="phone"> Phone call</label>
+          <label class="option"><input type="radio" name="contact" value="sms"> Text message</label>
+          <p class="error" id="contact-error" aria-live="polite"></p>
+        </fieldset>
+
+        <div class="field">
+          <label for="frequency">How often should we email you?</label>
+          <select id="frequency" name="frequency">
+            <option value="weekly">Weekly</option>
+            <option value="monthly" selected>Monthly</option>
+            <option value="never">Never</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="option terms">
+            <input type="checkbox" id="terms" name="terms" required aria-describedby="terms-error">
+            I agree to the terms and privacy policy
+          </label>
+          <p class="error" id="terms-error" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="backBtn" hidden>Back</button>
+        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn" hidden>Submit</button>
+      </div>
+    </form>
+
+    <!-- Success state -->
+    <section class="success" id="success" aria-live="polite" hidden>
+      <div class="success-icon" aria-hidden="true">&#10003;</div>
+      <h2 id="success-title" tabindex="-1">Your account has been created successfully!</h2>
+      <p id="success-text"></p>
+      <button type="button" class="btn btn-secondary" id="restartBtn">Start over</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

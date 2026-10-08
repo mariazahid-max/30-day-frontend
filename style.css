@@ -1,0 +1,243 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #eef2f7;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #4b5563;
+  --border: #6b7280;
+  --primary: #1d4ed8;
+  --primary-dark: #1e3a8a;
+  --success: #15803d;
+  --error: #b91c1c;
+  --error-bg: #fef2f2;
+  --focus: #f59e0b;
+  --radius: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* Visually hidden, still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Card ---------- */
+.card {
+  width: 100%;
+  max-width: 560px;
+  padding: 2rem;
+  background: var(--surface);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.1);
+}
+
+.card-header h1 { margin: 0 0 0.25rem; font-size: 1.75rem; line-height: 1.2; }
+.card-header p { margin: 0; color: var(--muted); }
+
+h2 { margin: 0 0 1.25rem; font-size: 1.25rem; }
+h2:focus { outline: none; }
+
+/* ---------- Step indicator ---------- */
+.stepper {
+  display: flex;
+  list-style: none;
+  margin: 1.75rem 0 2rem;
+  padding: 0;
+}
+
+.step-item {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Connecting line between dots */
+.step-item:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  top: 17px;
+  right: 50%;
+  width: 100%;
+  height: 3px;
+  background: #d1d5db;
+}
+
+.step-dot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 0.4rem;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  font-weight: 700;
+}
+
+/* Current step */
+.step-item.is-current { color: var(--primary); font-weight: 700; }
+.step-item.is-current .step-dot {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.2);
+}
+
+/* Completed steps */
+.step-item.is-complete { color: var(--success); }
+.step-item.is-complete .step-dot {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+  font-size: 0; /* hide the number, show a check mark */
+}
+.step-item.is-complete .step-dot::after { content: "\2713"; font-size: 1.1rem; }
+.step-item.is-complete::before,
+.step-item.is-current::before { background: var(--success); }
+
+/* ---------- Form fields ---------- */
+.field { margin-bottom: 1.25rem; }
+
+label, legend { display: block; margin-bottom: 0.35rem; font-weight: 600; }
+.muted { font-weight: 400; color: var(--muted); }
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+
+input.invalid, select.invalid { border-color: var(--error); background: var(--error-bg); }
+
+.hint { margin: 0.3rem 0 0; font-size: 0.875rem; color: var(--muted); }
+
+.error {
+  margin: 0.3rem 0 0;
+  min-height: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--error);
+}
+.error:empty { display: none; }
+
+/* ---------- Checkbox / radio groups ---------- */
+.group {
+  margin: 0 0 1.25rem;
+  padding: 0.9rem 1rem 0.5rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: var(--radius);
+}
+.group.invalid { border-color: var(--error); background: var(--error-bg); }
+.group legend { padding: 0 0.4rem; }
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.6rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+.option input { width: 1.15rem; height: 1.15rem; accent-color: var(--primary); }
+.terms { margin-bottom: 0; }
+
+/* ---------- Focus states ---------- */
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
+input[type="tel"]:focus, input[type="date"]:focus, select:focus {
+  border-color: var(--primary);
+}
+
+/* ---------- Buttons ---------- */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary { margin-left: auto; background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-secondary { background: #fff; color: var(--primary); border-color: var(--primary); }
+.btn-secondary:hover { background: #eff6ff; }
+
+/* ---------- Success state ---------- */
+.success { padding: 1.5rem 0 0.5rem; text-align: center; }
+.success h2 { margin-bottom: 0.5rem; font-size: 1.5rem; }
+.success h2:focus { outline: none; }
+.success p { margin: 0 0 1.5rem; color: var(--muted); }
+.success-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--success);
+  color: #fff;
+  font-size: 2rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  body { padding: 0; }
+  .card { padding: 1.25rem; border-radius: 0; box-shadow: none; min-height: 100vh; }
+  .card-header h1 { font-size: 1.5rem; }
+  .step-item { font-size: 0.8rem; }
+  .btn { flex: 1; padding: 0.85rem 1rem; }
+  .btn-primary { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
