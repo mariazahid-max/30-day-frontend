@@ -1,150 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Create your account in three quick steps: account details, profile information and personal preferences.">
-  <title>Create Your Account | 3-Step Signup Form</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lars Tornøe</title>
+  <meta name="description" content="Selected work in furniture, lighting and objects.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="card">
-    <header class="card-header">
-      <h1>Create your account</h1>
-      <p>It takes about a minute. You can go back at any time without losing anything.</p>
-    </header>
+  <a class="skip-link" href="#work">Skip to work</a>
 
-    <!-- Step indicator -->
-    <nav aria-label="Signup progress">
-      <ol class="stepper" id="stepper">
-        <li class="step-item is-current" aria-current="step">
-          <span class="step-dot" aria-hidden="true">1</span>
-          <span class="step-label">Account<span class="sr-only"> (current step)</span></span>
-        </li>
-        <li class="step-item">
-          <span class="step-dot" aria-hidden="true">2</span>
-          <span class="step-label">Profile<span class="sr-only"> (upcoming)</span></span>
-        </li>
-        <li class="step-item">
-          <span class="step-dot" aria-hidden="true">3</span>
-          <span class="step-label">Preferences<span class="sr-only"> (upcoming)</span></span>
-        </li>
-      </ol>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Lars Tornøe, home">
+        <svg class="brand__mark" viewBox="0 0 237 24" role="img" aria-label="Lars Tornøe" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="currentColor" stroke-width="4.1" stroke-linejoin="miter" stroke-miterlimit="3">
+            <path d="M1.8 0V22.2H14"/>
+            <path transform="translate(-4)" d="M23 24 34 1 45 24M27.5 16.5H40.5"/>
+            <path id="lt-r" transform="translate(-8)" d="M55.8 24V1.8H63A5.6 5.6 0 0 1 63 13H55.8M63 13 69.5 24"/>
+            <path transform="translate(-12)" d="M94 5.5C93 3 90 1.8 87 1.8 83 1.8 80.8 4 80.8 6.4 80.8 12.2 93.2 10.8 93.2 17.4 93.2 20.2 90.5 22.2 87 22.2 83.5 22.2 81 20.5 80.2 17.8"/>
+            <path transform="translate(-16)" d="M116 1.8H136M126 0V24"/>
+            <circle cx="136" cy="12" r="9.9"/>
+            <use href="#lt-r" transform="translate(104)"/>
+            <path transform="translate(-28)" d="M202.8 24V0L218.2 24V0"/>
+            <circle cx="207" cy="12" r="9.9"/>
+            <path transform="translate(-32)" d="M231 22.5 247 1.5" stroke-width="3.4"/>
+            <path transform="translate(-36)" d="M273 1.8H260.8V22.2H273M260.8 12H271"/>
+          </g>
+        </svg>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
     </nav>
+  </header>
 
-    <form id="signup-form" novalidate>
+  <main>
+    <section class="work" id="work" aria-label="Work">
+      <div class="work-grid" id="work-grid"></div>
+      <noscript><p class="noscript">Turn on JavaScript to see the projects.</p></noscript>
+    </section>
 
-      <!-- STEP 1: Account -->
-      <section class="step" aria-labelledby="step1-title">
-        <h2 id="step1-title" tabindex="-1">Step 1: Account</h2>
-
-        <div class="field">
-          <label for="email">Email address</label>
-          <input type="email" id="email" name="email" autocomplete="email" required
-                 aria-describedby="email-error" placeholder="you@example.com">
-          <p class="error" id="email-error" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" autocomplete="new-password"
-                 required minlength="8" aria-describedby="password-hint password-error">
-          <p class="hint" id="password-hint">Use at least 8 characters.</p>
-          <p class="error" id="password-error" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="confirmPassword">Confirm password</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password"
-                 required aria-describedby="confirmPassword-error">
-          <p class="error" id="confirmPassword-error" aria-live="polite"></p>
-        </div>
-      </section>
-
-      <!-- STEP 2: Profile -->
-      <section class="step" aria-labelledby="step2-title" hidden>
-        <h2 id="step2-title" tabindex="-1">Step 2: Profile</h2>
-
-        <div class="field">
-          <label for="fullName">Full name</label>
-          <input type="text" id="fullName" name="fullName" autocomplete="name" required
-                 aria-describedby="fullName-error">
-          <p class="error" id="fullName-error" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="phone">Phone number</label>
-          <input type="tel" id="phone" name="phone" autocomplete="tel" required
-                 aria-describedby="phone-hint phone-error" placeholder="+92 300 1234567">
-          <p class="hint" id="phone-hint">Include your country code if you can.</p>
-          <p class="error" id="phone-error" aria-live="polite"></p>
-        </div>
-
-        <div class="field">
-          <label for="dob">Date of birth</label>
-          <input type="date" id="dob" name="dob" autocomplete="bday" required
-                 aria-describedby="dob-error">
-          <p class="error" id="dob-error" aria-live="polite"></p>
-        </div>
-      </section>
-
-      <!-- STEP 3: Preferences -->
-      <section class="step" aria-labelledby="step3-title" hidden>
-        <h2 id="step3-title" tabindex="-1">Step 3: Preferences</h2>
-
-        <fieldset class="group" id="interests" data-group="interests"
-                  data-msg="Please choose at least one interest." aria-describedby="interests-error">
-          <legend>Interests <span class="muted">(choose at least one)</span></legend>
-          <label class="option"><input type="checkbox" name="interests" value="technology"> Technology</label>
-          <label class="option"><input type="checkbox" name="interests" value="design"> Design</label>
-          <label class="option"><input type="checkbox" name="interests" value="business"> Business</label>
-          <label class="option"><input type="checkbox" name="interests" value="education"> Education</label>
-          <p class="error" id="interests-error" aria-live="polite"></p>
-        </fieldset>
-
-        <fieldset class="group" id="contact" data-group="contact"
-                  data-msg="Please select how we should contact you." aria-describedby="contact-error">
-          <legend>Preferred contact method</legend>
-          <label class="option"><input type="radio" name="contact" value="email"> Email</label>
-          <label class="option"><input type="radio" name="contact" value="phone"> Phone call</label>
-          <label class="option"><input type="radio" name="contact" value="sms"> Text message</label>
-          <p class="error" id="contact-error" aria-live="polite"></p>
-        </fieldset>
-
-        <div class="field">
-          <label for="frequency">How often should we email you?</label>
-          <select id="frequency" name="frequency">
-            <option value="weekly">Weekly</option>
-            <option value="monthly" selected>Monthly</option>
-            <option value="never">Never</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label class="option terms">
-            <input type="checkbox" id="terms" name="terms" required aria-describedby="terms-error">
-            I agree to the terms and privacy policy
-          </label>
-          <p class="error" id="terms-error" aria-live="polite"></p>
-        </div>
-      </section>
-
-      <!-- Navigation -->
-      <div class="actions">
-        <button type="button" class="btn btn-secondary" id="backBtn" hidden>Back</button>
-        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
-        <button type="submit" class="btn btn-primary" id="submitBtn" hidden>Submit</button>
-      </div>
-    </form>
-
-    <!-- Success state -->
-    <section class="success" id="success" aria-live="polite" hidden>
-      <div class="success-icon" aria-hidden="true">&#10003;</div>
-      <h2 id="success-title" tabindex="-1">Your account has been created successfully!</h2>
-      <p id="success-text"></p>
-      <button type="button" class="btn btn-secondary" id="restartBtn">Start over</button>
+    <section class="about" id="about" aria-labelledby="about-title">
+      <h2 class="about__title" id="about-title">About</h2>
+      <p class="about__text">Designer working with furniture, lighting and everyday objects. This page shows a selection of recent projects.</p>
     </section>
   </main>
+
+  <dialog class="viewer" id="viewer" aria-labelledby="viewer-title">
+    <div class="viewer__bar">
+      <h3 class="viewer__title" id="viewer-title"></h3>
+      <button type="button" class="viewer__close" id="viewer-close">Close</button>
+    </div>
+    <img class="viewer__image" id="viewer-image" src="assets/images/candle-holders.svg" alt="" width="865" height="435">
+    <div class="viewer__nav">
+      <button type="button" id="viewer-prev">Previous</button>
+      <span class="viewer__count" id="viewer-count"></span>
+      <button type="button" id="viewer-next">Next</button>
+    </div>
+  </dialog>
 
   <script src="script.js"></script>
 </body>

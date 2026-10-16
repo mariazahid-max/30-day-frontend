@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 603" preserveAspectRatio="xMidYMid slice"><defs><filter id="n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7" result="t"/><feColorMatrix in="t" type="saturate" values="0"/></filter><linearGradient id="bg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="603"><stop offset="0" stop-color="#8d9aa0"/><stop offset="1" stop-color="#5f6d73"/></linearGradient><filter id="sf"><feGaussianBlur stdDeviation="14"/></filter></defs><rect width="1200" height="603" fill="url(#bg)"/><g transform="translate(90 -86) scale(.85)">
+<line x1="600" y1="0" x2="600" y2="262" stroke="#2c2f2e" stroke-width="5"/>
+<rect x="578" y="250" width="44" height="40" rx="8" fill="#2c2f2e"/>
+<path d="M380 560 A220 270 0 0 1 820 560 Z" fill="#3e4a44"/>
+<path d="M380 560 A220 270 0 0 1 480 345 L505 360 A180 215 0 0 0 420 560 Z" fill="#4c5a53"/>
+<rect x="372" y="556" width="456" height="12" rx="6" fill="#2c2f2e"/>
+<ellipse cx="600" cy="575" rx="62" ry="22" fill="#f6e7bf"/>
+
+</g><rect width="1200" height="603" filter="url(#n)" opacity="0.14" style="mix-blend-mode:multiply"/></svg>
