@@ -1,65 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lars Tornøe</title>
-  <meta name="description" content="Selected work in furniture, lighting and objects.">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SONIQ Aura One – Premium Wireless Headphones</title>
+<meta name="description" content="SONIQ Aura One: adaptive noise cancelling, 60-hour battery and studio-grade sound.">
+<script>try{var t=localStorage.getItem("soniq-theme");if(!t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="dark"}</script>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#work">Skip to work</a>
-
-  <header class="site-header" id="top">
-    <a class="brand" href="#top" aria-label="Lars Tornøe, home">
-        <svg class="brand__mark" viewBox="0 0 237 24" role="img" aria-label="Lars Tornøe" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="currentColor" stroke-width="4.1" stroke-linejoin="miter" stroke-miterlimit="3">
-            <path d="M1.8 0V22.2H14"/>
-            <path transform="translate(-4)" d="M23 24 34 1 45 24M27.5 16.5H40.5"/>
-            <path id="lt-r" transform="translate(-8)" d="M55.8 24V1.8H63A5.6 5.6 0 0 1 63 13H55.8M63 13 69.5 24"/>
-            <path transform="translate(-12)" d="M94 5.5C93 3 90 1.8 87 1.8 83 1.8 80.8 4 80.8 6.4 80.8 12.2 93.2 10.8 93.2 17.4 93.2 20.2 90.5 22.2 87 22.2 83.5 22.2 81 20.5 80.2 17.8"/>
-            <path transform="translate(-16)" d="M116 1.8H136M126 0V24"/>
-            <circle cx="136" cy="12" r="9.9"/>
-            <use href="#lt-r" transform="translate(104)"/>
-            <path transform="translate(-28)" d="M202.8 24V0L218.2 24V0"/>
-            <circle cx="207" cy="12" r="9.9"/>
-            <path transform="translate(-32)" d="M231 22.5 247 1.5" stroke-width="3.4"/>
-            <path transform="translate(-36)" d="M273 1.8H260.8V22.2H273M260.8 12H271"/>
-          </g>
-        </svg>
-    </a>
-    <nav class="site-nav" aria-label="Main">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="SONIQ home">SONIQ</a>
+    <nav id="nav" class="nav" aria-label="Main">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#faq">FAQ</a>
     </nav>
-  </header>
-
-  <main>
-    <section class="work" id="work" aria-label="Work">
-      <div class="work-grid" id="work-grid"></div>
-      <noscript><p class="noscript">Turn on JavaScript to see the projects.</p></noscript>
-    </section>
-
-    <section class="about" id="about" aria-labelledby="about-title">
-      <h2 class="about__title" id="about-title">About</h2>
-      <p class="about__text">Designer working with furniture, lighting and everyday objects. This page shows a selection of recent projects.</p>
-    </section>
-  </main>
-
-  <dialog class="viewer" id="viewer" aria-labelledby="viewer-title">
-    <div class="viewer__bar">
-      <h3 class="viewer__title" id="viewer-title"></h3>
-      <button type="button" class="viewer__close" id="viewer-close">Close</button>
+    <div class="actions">
+      <button id="themeToggle" class="icon-btn" type="button" aria-label="Switch to light mode">
+        <svg class="i-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="i-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg>
+      </button>
+      <button id="menuToggle" class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </div>
-    <img class="viewer__image" id="viewer-image" src="assets/images/candle-holders.svg" alt="" width="865" height="435">
-    <div class="viewer__nav">
-      <button type="button" id="viewer-prev">Previous</button>
-      <span class="viewer__count" id="viewer-count"></span>
-      <button type="button" id="viewer-next">Next</button>
-    </div>
-  </dialog>
+  </div>
+</header>
 
-  <script src="script.js"></script>
+<main id="main">
+  <section class="hero wrap" id="top">
+    <div class="hero-copy">
+      <h1>Hear every layer.<br>Hear nothing else.</h1>
+      <p class="lead">Aura One pairs adaptive noise cancelling with 40&nbsp;mm beryllium drivers and 60 hours of battery, so your music stays clear from the first train to the last flight.</p>
+      <p class="price"><strong>$349</strong> <s>$399</s> <span>Free shipping and 30-day returns</span></p>
+      <div class="cta-row">
+        <a class="btn" href="#pricing">Shop Now</a>
+        <a class="btn ghost" href="#features">See features</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img id="heroImg" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80" alt="SONIQ Aura One wireless headphones" width="900" height="900" data-fallback>
+    </div>
+  </section>
+
+  <section class="section wrap" id="features" aria-labelledby="f-h">
+    <h2 id="f-h">Built for people who listen closely</h2>
+    <div class="grid cards">
+      <article class="card reveal"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12h3l2-6 4 12 3-9 2 3h4"/></svg><h3>Adaptive noise cancelling</h3><p>Six microphones sample your surroundings 48,000 times a second and tune cancellation to match.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="7" width="18" height="10" rx="2"/><path d="M22 11v2M6 10v4M10 10v4"/></svg><h3>60-hour battery</h3><p>A 10-minute charge gives you 5 hours of playback. Full charge over USB-C in under two hours.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg><h3>Studio-grade drivers</h3><p>Beryllium-coated 40&nbsp;mm drivers deliver tight bass and detailed highs with very low distortion.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12a7 7 0 0 1 14 0M8 15a4 4 0 0 1 8 0M12 19h.01"/></svg><h3>Multipoint Bluetooth 5.4</h3><p>Stay connected to your phone and laptop at once and switch between them automatically.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V8a5 5 0 0 0-5-5zM8 21h8"/></svg><h3>Clear call quality</h3><p>Beamforming mics and wind-aware processing keep your voice natural, even on a busy street.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg><h3>Comfort that lasts</h3><p>Memory-foam ear cushions and a 254&nbsp;g aluminium frame stay comfortable through long sessions.</p></article>
+    </div>
+  </section>
+
+  <section class="section band" id="pricing" aria-labelledby="p-h">
+    <div class="wrap">
+      <h2 id="p-h">Add SONIQ Care to your Aura One</h2>
+      <p class="sub">Choose a protection plan. Save 20% when you pay yearly.</p>
+      <div class="toggle" role="group" aria-label="Billing period">
+        <button type="button" class="seg active" data-billing="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" class="seg" data-billing="yearly" aria-pressed="false">Yearly <span class="save">Save 20%</span></button>
+      </div>
+      <div class="grid plans">
+        <article class="plan reveal">
+          <h3>Basic</h3>
+          <p class="amount"><span class="num" data-monthly="4" data-yearly="38">4</span><span class="per">/month</span></p>
+          <ul><li>2-year extended warranty</li><li>Free firmware updates</li><li>Email support</li></ul>
+          <button type="button" class="btn ghost choose" data-plan="Basic">Choose Basic</button>
+        </article>
+        <article class="plan featured reveal">
+          <h3>Plus</h3>
+          <p class="amount"><span class="num" data-monthly="8" data-yearly="77">8</span><span class="per">/month</span></p>
+          <ul><li>Accidental damage cover</li><li>One-time battery replacement</li><li>Priority chat support</li></ul>
+          <button type="button" class="btn choose" data-plan="Plus">Choose Plus</button>
+        </article>
+        <article class="plan reveal">
+          <h3>Max</h3>
+          <p class="amount"><span class="num" data-monthly="12" data-yearly="115">12</span><span class="per">/month</span></p>
+          <ul><li>Full replacement in 48 hours</li><li>Lost-and-found cover</li><li>Phone support, 7 days a week</li></ul>
+          <button type="button" class="btn ghost choose" data-plan="Max">Choose Max</button>
+        </article>
+      </div>
+      <p id="planMsg" class="plan-msg" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="section wrap" id="testimonials" aria-labelledby="t-h">
+    <h2 id="t-h">What listeners say</h2>
+    <div class="slider" role="region" aria-roledescription="carousel" aria-label="Customer testimonials" tabindex="0">
+      <div class="viewport"><div class="track" id="track" aria-live="polite">
+        <figure class="slide"><blockquote>“I wear them eight hours a day at my desk. The noise cancelling is the first I have used that does not feel like pressure on my ears.”</blockquote><figcaption>Maya R., Sound designer</figcaption></figure>
+        <figure class="slide"><blockquote>“Flew London to Singapore on one charge and still had battery left. The calls were clearer than my phone's speaker.”</blockquote><figcaption>Daniel K., Consultant</figcaption></figure>
+        <figure class="slide"><blockquote>“Tight bass, honest mids, and no fatigue. I now check my mixes on these before anything else.”</blockquote><figcaption>Priya S., Music producer</figcaption></figure>
+        <figure class="slide"><blockquote>“Support replaced my pair in two days after I sat on them. The Plus plan paid for itself.”</blockquote><figcaption>Tom W., Teacher</figcaption></figure>
+      </div></div>
+      <div class="slider-ctl">
+        <button type="button" class="icon-btn" id="prev" aria-label="Previous testimonial">&#8592;</button>
+        <span id="count" aria-hidden="true">1 / 4</span>
+        <button type="button" class="icon-btn" id="next" aria-label="Next testimonial">&#8594;</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap narrow" id="faq" aria-labelledby="q-h">
+    <h2 id="q-h">Frequently asked questions</h2>
+    <div class="faq">
+      <div class="faq-item"><h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="a1" id="q1">How long does the battery last?<span class="chev" aria-hidden="true"></span></button></h3><div class="faq-a" id="a1" role="region" aria-labelledby="q1" hidden><p>Up to 60 hours with noise cancelling off and 45 hours with it on. A 10-minute charge adds about 5 hours.</p></div></div>
+      <div class="faq-item"><h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="a2" id="q2">Can I connect two devices at once?<span class="chev" aria-hidden="true"></span></button></h3><div class="faq-a" id="a2" role="region" aria-labelledby="q2" hidden><p>Yes. Multipoint Bluetooth connects to two devices and switches automatically when a call comes in.</p></div></div>
+      <div class="faq-item"><h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="a3" id="q3">What is your return policy?<span class="chev" aria-hidden="true"></span></button></h3><div class="faq-a" id="a3" role="region" aria-labelledby="q3" hidden><p>Try Aura One for 30 days. If it is not right for you, return it for a full refund. Shipping is free.</p></div></div>
+      <div class="faq-item"><h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="a4" id="q4">Is there a wired option?<span class="chev" aria-hidden="true"></span></button></h3><div class="faq-a" id="a4" role="region" aria-labelledby="q4" hidden><p>Yes. Use the included USB-C or 3.5&nbsp;mm cable for lossless wired listening, even when the battery is empty.</p></div></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-grid">
+    <div><a class="logo" href="#top">SONIQ</a><p class="muted">Premium wireless audio, designed for focus.</p></div>
+    <nav aria-label="Product"><h3>Product</h3><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#testimonials">Reviews</a></nav>
+    <nav aria-label="Support"><h3>Support</h3><a href="#faq">FAQ</a><a href="#pricing">SONIQ Care</a><a href="#top">Back to top</a></nav>
+    <div><h3>Follow us</h3>
+      <div class="social">
+        <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="SONIQ on X"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.2L5.8 22H3l7-8L2.5 2h6.1l4.2 5.6zm-1 18h1.6L7.9 3.8H6.2z"/></svg></a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="SONIQ on Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="SONIQ on YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 8a3 3 0 0 0-2-2c-2-.5-8-.5-8-.5s-6 0-8 .5a3 3 0 0 0-2 2c-.5 2-.5 4-.5 4s0 2 .5 4a3 3 0 0 0 2 2c2 .5 8 .5 8 .5s6 0 8-.5a3 3 0 0 0 2-2c.5-2 .5-4 .5-4s0-2-.5-4zM10 15V9l5 3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <p class="wrap copy">&copy; <span id="year">2026</span> SONIQ Audio. All rights reserved.</p>
+</footer>
 </body>
 </html>

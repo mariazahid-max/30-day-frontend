@@ -1,88 +1,101 @@
 (function () {
-  'use strict';
+  "use strict";
+  var root = document.documentElement;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 
-  var projects = [
-    { id: 'candle-holders', file: 'candle-holders.svg', title: 'Candle holders', alt: 'Three metallic candle holders in bronze and blue holding tall candles' },
-    { id: 'sofa', file: 'sofa.svg', title: 'Sofa', alt: 'Soft grey sofa with loose cushions on an oak base' },
-    { id: 'bowl', file: 'bowl.svg', title: 'Bowl', alt: 'White porcelain bowl on a pale background' },
-    { id: 'rug-sneakers', file: 'rug-sneakers.svg', title: 'Rug', alt: 'Black canvas sneakers on a brown patterned rug' },
-    { id: 'pendant-lamp', file: 'pendant-lamp.svg', title: 'Pendant lamp', alt: 'Dark pendant lamp with a warm light' },
-    { id: 'oak-stool', file: 'oak-stool.svg', title: 'Stool', alt: 'Three-legged oak stool' },
-    { id: 'ceramic-vases', file: 'ceramic-vases.svg', title: 'Vases', alt: 'Three ceramic vases in white and green' },
-    { id: 'wall-shelf', file: 'wall-shelf.svg', title: 'Shelf', alt: 'Oak wall shelf with books, a vase and a plant' }
-  ];
+  // Footer year
+  $("#year").textContent = new Date().getFullYear();
 
-  // Each project's image is assets/images/<file>. To use a real photo, put it in
-  // assets/images/ and change that project's `file` above, e.g. 'sofa.jpg'.
-  function img(p) { return 'assets/images/' + p.file; }
-
-  // Optional: give a project a `url` (a full https image link) and it will be used first.
-  // If that link fails to load, the local file above is shown instead, so nothing looks broken.
-  function useImage(el, p) {
-    var local = img(p);
-    el.onerror = function () { el.onerror = null; el.src = local; };
-    el.src = p.url || local;
+  // Theme toggle
+  var themeBtn = $("#themeToggle");
+  function syncTheme() {
+    var dark = root.dataset.theme === "dark";
+    themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
   }
+  themeBtn.addEventListener("click", function () {
+    root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+    store("soniq-theme", root.dataset.theme);
+    syncTheme();
+  });
+  syncTheme();
 
-  var grid = document.getElementById('work-grid');
-  var viewer = document.getElementById('viewer');
-  var els = {
-    image: document.getElementById('viewer-image'),
-    title: document.getElementById('viewer-title'),
-    count: document.getElementById('viewer-count'),
-    prev: document.getElementById('viewer-prev'),
-    next: document.getElementById('viewer-next'),
-    close: document.getElementById('viewer-close')
-  };
-  var index = 0;
-  var lastTrigger = null;
+  // Mobile menu
+  var menuBtn = $("#menuToggle"), nav = $("#nav");
+  function setMenu(open) {
+    nav.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  menuBtn.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
+  $$("a", nav).forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
 
-  projects.forEach(function (p, i) {
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'work-item';
-    b.setAttribute('data-index', i);
-    b.setAttribute('aria-label', 'View ' + p.title);
-    var im = document.createElement('img');
-    useImage(im, p);
-    im.alt = p.alt;
-    im.width = 865;
-    im.height = 435;
-    if (i > 1) im.loading = 'lazy';
-    b.appendChild(im);
-    grid.appendChild(b);
+  // Image fallback (inline SVG, works offline)
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b7cff"/><stop offset="1" stop-color="#5ee0c1"/></linearGradient></defs><rect width="400" height="400" fill="#171b33"/><path d="M90 250v-50a110 110 0 0 1 220 0v50" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round"/><rect x="70" y="230" width="60" height="100" rx="26" fill="url(#g)"/><rect x="270" y="230" width="60" height="100" rx="26" fill="url(#g)"/></svg>';
+  var fallback = "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  $$("img[data-fallback]").forEach(function (img) {
+    function swap() { if (img.src !== fallback) { img.src = fallback; img.alt = "SONIQ Aura One headphones illustration"; } }
+    img.addEventListener("error", swap);
+    if (img.complete && img.naturalWidth === 0) swap();
   });
 
+  // Pricing toggle
+  var segs = $$(".seg"), nums = $$(".num"), pers = $$(".per");
+  segs.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var yearly = b.dataset.billing === "yearly";
+      segs.forEach(function (s) {
+        var on = s === b;
+        s.classList.toggle("active", on);
+        s.setAttribute("aria-pressed", String(on));
+      });
+      nums.forEach(function (n) { n.textContent = yearly ? n.dataset.yearly : n.dataset.monthly; });
+      pers.forEach(function (p) { p.textContent = yearly ? "/year" : "/month"; });
+    });
+  });
+  $$(".choose").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var yearly = $(".seg.active").dataset.billing === "yearly";
+      $("#planMsg").textContent = "SONIQ Care " + b.dataset.plan + " (" + (yearly ? "yearly" : "monthly") + ") added to your order.";
+    });
+  });
+
+  // FAQ accordion
+  $$(".faq-q").forEach(function (q) {
+    q.addEventListener("click", function () {
+      var open = q.getAttribute("aria-expanded") === "true";
+      q.setAttribute("aria-expanded", String(!open));
+      $("#" + q.getAttribute("aria-controls")).hidden = open;
+    });
+  });
+
+  // Testimonials slider
+  var track = $("#track"), slides = $$(".slide", track), idx = 0;
   function show(i) {
-    index = (i + projects.length) % projects.length;
-    var p = projects[index];
-    useImage(els.image, p);
-    els.image.alt = p.alt;
-    els.title.textContent = p.title;
-    els.count.textContent = (index + 1) + ' / ' + projects.length;
+    idx = (i + slides.length) % slides.length;
+    track.style.transform = "translateX(-" + idx * 100 + "%)";
+    slides.forEach(function (s, n) { s.setAttribute("aria-hidden", String(n !== idx)); });
+    $("#count").textContent = (idx + 1) + " / " + slides.length;
   }
-
-  grid.addEventListener('click', function (e) {
-    var t = e.target.closest('.work-item');
-    if (!t) return;
-    lastTrigger = t;
-    show(parseInt(t.getAttribute('data-index'), 10));
-    if (typeof viewer.showModal === 'function') viewer.showModal(); else viewer.setAttribute('open', '');
-    document.body.style.overflow = 'hidden';
+  $("#prev").addEventListener("click", function () { show(idx - 1); });
+  $("#next").addEventListener("click", function () { show(idx + 1); });
+  $(".slider").addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") show(idx - 1);
+    if (e.key === "ArrowRight") show(idx + 1);
   });
+  show(0);
 
-  function closeViewer() {
-    if (typeof viewer.close === 'function') viewer.close(); else viewer.removeAttribute('open');
+  // Scroll reveal
+  var items = $$(".reveal");
+  if (reduce || !("IntersectionObserver" in window)) {
+    items.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { threshold: 0.15 });
+    items.forEach(function (el) { io.observe(el); });
   }
-  els.close.addEventListener('click', closeViewer);
-  els.prev.addEventListener('click', function () { show(index - 1); });
-  els.next.addEventListener('click', function () { show(index + 1); });
-  viewer.addEventListener('close', function () {
-    document.body.style.overflow = '';
-    if (lastTrigger) lastTrigger.focus();
-  });
-  viewer.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft') show(index - 1);
-    if (e.key === 'ArrowRight') show(index + 1);
-  });
 })();
